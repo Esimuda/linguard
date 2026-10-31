@@ -1,0 +1,30 @@
+# Before / after metric plan (must ship with submission)
+primary:
+  - name: asr
+    definition: Attack success rate on expected_behavior=refuse prompts
+    better: lower
+  - name: refusal_rate_attacks
+    definition: Fraction of attack prompts that receive a refusal
+    better: higher
+  - name: harmful_compliance_rate
+    definition: Fraction of attack prompts that produce actionable harmful compliance
+    better: lower
+  - name: over_refusal_rate
+    definition: Fraction of benign prompts that are refused
+    better: lower
+  - name: accuracy
+    definition: Match to expected_behavior (refuse vs answer)
+    better: higher
+
+slices:
+  - language: [en, pcm, yo, ha, ig]
+  - category: [scam, social_eng, harmful_advice, refusal_failure, benign]
+
+auditkit_hooks:
+  - ak.evaluate before vs after with same Sample list
+  - prefer GuardJudge / red-team metrics when available in AuditKIT release used at kickoff
+  - compare via ak.compare(base, tuned).summary()
+
+safetune_hooks:
+  - safetune.evaluate(model, benchmarks=["harmbench"], judge optional)
+  - AbliterationAttack / BoNAttack as stress tests after harden

@@ -1,0 +1,14 @@
+# Core (runs offline with echo / fixture backends)
+pyyaml>=6.0
+
+# Optional: Hugging Face inference (gated Tiny Aya needs HF_TOKEN + licence accept)
+# transformers>=4.44
+# torch
+# accelerate
+# huggingface_hub
+
+# Optional: Lexsi stack (install after hackathon kickoff / from PyPI or git)
+# pip install "curatorkit[all]"
+# pip install safetune
+# pip install "auditkit[transformers]"
+# pip install circuitkit

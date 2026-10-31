@@ -1,0 +1,23 @@
+# PidginGuard model pins (Lexsi × Cohere Labs hackathon)
+# Tiny Aya is gated on HF — accept the licence, then `hf auth login`.
+
+primary:
+  id: CohereLabs/tiny-aya-earth
+  why: "Best Tiny Aya sibling for West Asian & African languages; covers Hausa, Igbo, Yoruba."
+  size: 3.35B
+  context: 8K
+  url: https://huggingface.co/CohereLabs/tiny-aya-earth
+
+secondary:
+  id: CohereLabs/tiny-aya-global
+  why: "Balanced multilingual baseline for ablation vs earth."
+  url: https://huggingface.co/CohereLabs/tiny-aya-global
+
+scale_up:
+  id: CohereLabs/aya-expanse-8b
+  why: "Optional larger multilingual model if compute allows; CircuitKIT/AuditKIT documented."
+  url: https://huggingface.co/CohereLabs/aya-expanse-8b
+
+backends:
+  early_package: echo   # offline, no GPU
+  after_hf_access: hf

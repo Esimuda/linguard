@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pidginguard"
+version = "0.1.0"
+description = "Multilingual Nigerian-language red-team + Lexsi safety harden pipeline for Tiny Aya / Aya Expanse"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Olabowale Babalola", email = "147493345+Esimuda@users.noreply.github.com" },
+]
+keywords = ["ai-safety", "red-teaming", "lexsi", "aya", "nigeria", "multilingual"]
+dependencies = [
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+hf = ["transformers>=4.44", "torch", "accelerate", "huggingface_hub"]
+lexsi = [
+  "curatorkit",
+  "safetune",
+  "auditkit",
+  "circuitkit",
+]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+pidginguard = "pidginguard.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/Esimuda/pidginguard"
+Hackathon = "https://hackathon.lexsi.ai/"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

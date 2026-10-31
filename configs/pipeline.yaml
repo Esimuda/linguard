@@ -1,0 +1,42 @@
+# Declarative PidginGuard × Lexsi pipeline (wire after kickoff)
+name: pidginguard-v0
+track: AI Red Teaming / Safety and Alignment
+ticket: 27J8-ENVZ-WV7M
+
+stages:
+  - id: redteam_seeds
+    tool: pidginguard.harness
+    inputs: data/seeds/*.jsonl
+    outputs: data/results/baseline_*.json
+
+  - id: curate_safety_dataset
+    tool: CuratorKIT
+    adapter: pidginguard.adapters.curatorkit
+    inputs: data/curated/raw_corpus.jsonl
+    config:
+      generation_task: adversarial_preference
+      export_formats: [alpaca, sharegpt, messages]
+      output_split: { train: 0.9, validation: 0.1 }
+    outputs: data/curated/curatorkit_out/
+
+  - id: harden
+    tool: SafeTune
+    adapter: pidginguard.adapters.safetune
+    method: SafeGradTrainer
+    inputs:
+      model: CohereLabs/tiny-aya-earth
+      dataset: data/curated/curatorkit_out/
+      dataset_config: sft_messages
+
+  - id: circuits
+    tool: CircuitKIT
+    adapter: pidginguard.adapters.circuitkit
+    config:
+      algorithm: eap-ig
+      sparsity: 0.3
+    outputs: data/results/circuit_checkpoint/
+
+  - id: audit_before_after
+    tool: AuditKIT
+    adapter: pidginguard.adapters.auditkit
+    metrics_plan: docs/METRICS.md

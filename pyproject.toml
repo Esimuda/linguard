@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pidginguard"
+name = "linguard"
 version = "0.1.0"
-description = "Multilingual Nigerian-language red-team + Lexsi safety harden pipeline for Tiny Aya / Aya Expanse"
+description = "Linguard — guarding language: multilingual Nigerian-language red-team + Lexsi safety harden pipeline for Tiny Aya"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -20,6 +20,7 @@ dependencies = [
 [project.optional-dependencies]
 hf = ["transformers>=4.44", "torch", "accelerate", "huggingface_hub"]
 lexsi = [
+  "peft",
   "curatorkit",
   "safetune",
   "auditkit",
@@ -28,6 +29,7 @@ lexsi = [
 dev = ["pytest>=7.0"]
 
 [project.scripts]
+linguard = "pidginguard.__main__:main"
 pidginguard = "pidginguard.__main__:main"
 
 [project.urls]

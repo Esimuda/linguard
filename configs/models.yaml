@@ -1,4 +1,4 @@
-# PidginGuard model pins (Lexsi × Cohere Labs hackathon)
+# Linguard model pins (Lexsi × Cohere Labs hackathon)
 # Tiny Aya is gated on HF — accept the licence, then `hf auth login`.
 
 primary:

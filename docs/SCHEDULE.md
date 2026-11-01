@@ -5,7 +5,7 @@ Hard personal push: **visible early package before Nov 3 WAT**.
 
 | Date (WAT) | Milestone |
 |------------|-----------|
-| Oct 31 | Kickoff talk; publish PidginGuard early package (this repo) |
+| Oct 31 | Kickoff talk; publish Linguard early package (this repo) |
 | Nov 1 | Install Lexsi kits; accept Tiny Aya Hub licence; first live baseline |
 | Nov 2–3 | Expand seeds; CuratorKIT dry-run → first curated export; HF dataset draft |
 | Nov 4–5 | SafeTune harden v0 on `tiny-aya-earth`; log train provenance |

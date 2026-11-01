@@ -39,7 +39,7 @@ def discover_safety_circuit(
         "sparsity": sparsity,
         "export_dir": str(export_dir),
         "note": (
-            "For PidginGuard we will swap `task` to a safety-oriented probe "
+            "For Linguard we will swap `task` to a safety-oriented probe "
             "once CircuitKIT task registry options for refusal/safety are confirmed "
             "post-kickoff. Tiny Aya is listed as experimental but validated in CircuitKIT."
         ),

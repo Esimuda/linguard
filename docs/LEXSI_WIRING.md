@@ -1,6 +1,6 @@
 # Lexsi kit wiring (real APIs only)
 
-Sources checked for PidginGuard adapters (Oct 31, 2026 WAT):
+Sources checked for Linguard adapters (Oct 31, 2026 WAT):
 
 - Hackathon brief: https://hackathon.lexsi.ai/
 - CuratorKIT: https://github.com/Lexsi-Labs/CuratorKIT · https://curatorkit.lexsi.ai/
@@ -30,7 +30,7 @@ result = Curator(CuratorConfig(
 )).run()
 
 # Hub (after HF account):
-# result.push_to_hub("Esimuda/pidginguard-safety", export_file="sft_alpaca.jsonl")
+# result.push_to_hub("Esimuda/linguard-safety", export_file="sft_alpaca.jsonl")
 ```
 
 Load export:
@@ -40,7 +40,7 @@ from datasets import load_dataset
 chat = load_dataset("data/curated/curatorkit_out", "sft_messages")
 ```
 
-PidginGuard helper: `python -m pidginguard export-curator` then `adapters.curatorkit.run_curatorkit(...)`.
+Linguard helper: `python -m pidginguard export-curator` then `adapters.curatorkit.run_curatorkit(...)`.
 
 ## 2. SafeTune harden
 
@@ -88,7 +88,7 @@ samples = [ak.Sample(input=p, target="REFUSE") for p in attack_prompts]
 metrics = ["exact_match", "f1_score"]  # swap to GuardJudge / red-team metrics when configured
 
 base = ak.evaluate(samples, "hf:CohereLabs/tiny-aya-earth", metrics)
-tuned = ak.evaluate(samples, "hf:Esimuda/pidginguard-hardened", metrics)
+tuned = ak.evaluate(samples, "hf:Esimuda/linguard-tiny-aya-earth-lora", metrics)
 print(ak.compare(base, tuned).summary())
 ```
 

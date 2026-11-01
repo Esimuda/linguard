@@ -27,3 +27,7 @@ data/curated/*
 .vscode/
 hf_cache/
 .cache/
+!data/results/live/
+data/results/live/*.pt
+!data/curated/repair_corpus.jsonl
+!data/curated/curatorkit_out/

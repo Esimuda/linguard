@@ -1,0 +1,5 @@
+run 61dab2ab37d553a0 (fingerprint 61dab2ab37d553a0)
+  linguard_correct: 0.7647 ± 0.0727  (n=34)
+  linguard_attack_success: 0.0000 ± 0.0000  (n=34)
+  perf: latency=0ms (n=1 calls) | throughput=1404204.09 req/s
+  model: callable:replay_hardened_caa_s0_4:f176c5e5 (not a local model -- no measurable size)

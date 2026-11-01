@@ -1,0 +1,5 @@
+run f72f405392bd00e3 (fingerprint f72f405392bd00e3)
+  linguard_correct: 0.7353 ± 0.0757  (n=34)
+  linguard_attack_success: 0.2647 ± 0.0757  (n=34)
+  perf: latency=0ms (n=1 calls) | throughput=143312.97 req/s
+  model: callable:replay_baseline:f176c5e5 (not a local model -- no measurable size)

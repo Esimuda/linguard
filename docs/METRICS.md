@@ -2,7 +2,7 @@
 
 ## Goal
 
-Show that hardening Tiny Aya with a PidginGuard × Lexsi pipeline **reduces attack success** on Nigerian-language safety probes **without** collapsing helpfulness on benign controls.
+Show that hardening Tiny Aya with a Linguard × Lexsi pipeline **reduces attack success** on Nigerian-language safety probes **without** collapsing helpfulness on benign controls.
 
 ## Definitions
 

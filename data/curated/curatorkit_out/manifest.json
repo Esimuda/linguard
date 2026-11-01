@@ -1,0 +1,78 @@
+{
+  "pipeline_config_hash": "1d7e37eddaffe26c",
+  "run_timestamp": "2026-11-01T15:43:57.993400Z",
+  "source_files": [],
+  "stage_counts": {
+    "JSONLReader": {
+      "output_count": 34,
+      "rejected_count": 0
+    },
+    "SchemaGate": {
+      "input_count": 34,
+      "output_count": 34,
+      "probe_recovered": 0,
+      "rejected_count": 0
+    },
+    "ExactDeduplicator": {
+      "input_count": 34,
+      "output_count": 34
+    },
+    "TextCleaner": {
+      "input_count": 34,
+      "output_count": 34
+    },
+    "AlpacaExporter": {
+      "exported_count": 34
+    },
+    "MessagesExporter": {
+      "exported_count": 34
+    }
+  },
+  "rejected_breakdown": {},
+  "dedup_stats": {
+    "exact_duplicates_removed": 0
+  },
+  "minhash_threshold": null,
+  "sampler_stats": null,
+  "token_stats": {
+    "total_prompt_tokens": 0,
+    "total_completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "wall_clock_seconds": 0.009,
+  "tool_versions": {
+    "curatorkit": "0.1.22",
+    "python": "3.13.5"
+  },
+  "diversity_stats": null,
+  "diagnostic_stats": null,
+  "diagnostic_files": [],
+  "provenance": {
+    "schema": "lexsi.provenance/1",
+    "library": "curatorkit",
+    "version": "0.1.22",
+    "git_sha": null,
+    "created_at": "2026-11-01T15:43:57Z",
+    "base_model": null,
+    "method": "curate",
+    "inputs": [
+      {
+        "kind": "dataset",
+        "ref": "/workspace/pidginguard/data/curated/repair_corpus.jsonl",
+        "config": null,
+        "provenance": null
+      }
+    ],
+    "params": {
+      "generator_model": null,
+      "judge_model": null,
+      "grpo_scoring_model": null,
+      "export_formats": [
+        "alpaca",
+        "messages"
+      ],
+      "output_split": null,
+      "pipeline_config_hash": "1d7e37eddaffe26c"
+    }
+  }
+}

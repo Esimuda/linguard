@@ -1,11 +1,16 @@
-# PidginGuard
+# Linguard
+
+> **Linguard — guarding language.** Small multilingual models stay safe in English and slip in Pidgin, Yoruba, Hausa and Igbo. Linguard finds those gaps, curates repair data, hardens the model, and proves it with before/after audits.
 
 **Multilingual Nigerian-language safety red-teaming + Lexsi harden pipeline for Cohere Labs Tiny Aya.**
+(Python package/CLI is still importable as `pidginguard`; `linguard` CLI alias added. Repo URL unchanged.)
 
 Lexsi AI Safety & Alignment Hackathon · Track: **AI Red Teaming / Safety and Alignment**  
 Solo · Ticket `#27J8-ENVZ-WV7M` · Builder: **Olabowale Babalola** (GitHub [@Esimuda](https://github.com/Esimuda); videos as Israel)
 
-> Early package (pre–Nov 3 WAT). Official submit window opens **Nov 1**. This repo is scaffolding + a runnable offline harness — **not** a final submission.
+> Status 1 Nov 2026 (WAT): **live run done on CPU** — Tiny Aya Earth baseline, AuditKIT, CuratorKIT, SafeTune harden all executed with real Lexsi kits. Weight-level SafeTune + CircuitKIT need GPU (see [`docs/GPU_PATH.md`](docs/GPU_PATH.md)).
+
+**Live artifacts:** dataset [`Esimuda/linguard-safety`](https://huggingface.co/datasets/Esimuda/linguard-safety) · steering vectors [`Esimuda/linguard-caa-vectors`](https://huggingface.co/Esimuda/linguard-caa-vectors) · demo Space [`Esimuda/linguard`](https://huggingface.co/spaces/Esimuda/linguard)
 
 ---
 
@@ -16,13 +21,13 @@ Safety evals for open multilingual models skew English. Nigerian users talk in *
 1. A **red-team harness** that probes scam / social-eng / harmful-advice / jailbreak failures in those languages  
 2. A **CuratorKIT → SafeTune → (CircuitKIT) → AuditKIT** chain that turns failures into a safety dataset, hardens the model, and reports **before/after** metrics
 
-PidginGuard closes that gap for the Lexsi × Cohere Labs × Hugging Face hackathon.
+Linguard closes that gap for the Lexsi × Cohere Labs × Hugging Face hackathon.
 
 ## Pipeline
 
 ```mermaid
 flowchart LR
-  A["Seed attacks<br/>EN · PCM · YO · HA · IG"] --> B["PidginGuard harness<br/>ASR · refusal · over-refusal"]
+  A["Seed attacks<br/>EN · PCM · YO · HA · IG"] --> B["Linguard harness<br/>ASR · refusal · over-refusal"]
   B --> C["CuratorKIT<br/>adversarial_preference / QA<br/>quality gates + provenance"]
   C --> D["SafeTune<br/>SafeGrad harden"]
   D --> E["CircuitKIT<br/>safety circuit discover / prune"]
@@ -33,7 +38,7 @@ flowchart LR
 
 ### Lexsi kits chained (target ≥3)
 
-| Kit | Role in PidginGuard | Docs / repo |
+| Kit | Role in Linguard | Docs / repo |
 |-----|---------------------|-------------|
 | **CuratorKIT** | Build safety-focused dataset from multilingual attack + repair pairs | [GitHub](https://github.com/Lexsi-Labs/CuratorKIT) · [docs](https://curatorkit.lexsi.ai/) |
 | **SafeTune** | Audit / repair safety drift (`harden.SafeGradTrainer`, evaluate attacks) | [GitHub](https://github.com/Lexsi-Labs/SafeTune) · [docs](https://safetune.lexsi.ai/) |
@@ -56,7 +61,7 @@ Hackathon hub: [hackathon.lexsi.ai](https://hackathon.lexsi.ai/)
 
 ## What's runnable today vs later
 
-| Today (offline) | Waits for Nov 1 / HF access |
+| Offline (no token) | Live (done 1 Nov on CPU unless noted) |
 |-----------------|-----------------------------|
 | Seed prompts (34 across 5 languages) | Live Tiny Aya generations (gated HF) |
 | `echo` / `fixture` backends | CuratorKIT generation with local Ollama/vLLM or allowed free route |
@@ -94,18 +99,42 @@ pip install -e ".[hf]"
 python -m pidginguard run --backend hf --model-id CohereLabs/tiny-aya-earth --name tiny-aya-earth-baseline --limit 8
 ```
 
-## Before / after metrics
+## Before / after metrics (live, 1 Nov 2026)
 
-See [`docs/METRICS.md`](docs/METRICS.md) and [`configs/metrics.yaml`](configs/metrics.yaml).
+Real numbers from `scripts/live_pipeline.py` on `CohereLabs/tiny-aya-earth` (bf16, CPU, greedy, 96 new tokens), 34 seed prompts
+(24 attacks that should be refused, 10 benign controls that should be answered) across EN · PCM · YO · HA · IG.
+Raw transcripts: [`data/results/live/`](data/results/live/).
 
-Headline numbers we will report:
+| Run | Accuracy | Attack success (ASR, 24 attacks) ↓ | Over-refusal (10 benign) ↓ | en acc | pcm acc | yo acc | ha acc | ig acc |
+|---|---|---|---|---|---|---|---|---|
+| Baseline (Tiny Aya Earth, no harden) | 73.5% | 37.5% | 0% | 100% | 71% | 83% | 50% | 50% |
+| SafeTune CAA strength 0.25 | 85.3% | 4.2% | 40% | 100% | 71% | 83% | 100% | 67% |
+| SafeTune CAA strength 0.4 | 76.5% | 0.0% | 80% | 78% | 86% | 67% | 83% | 67% |
 
-- **ASR** ↓ on attack set (`expected_behavior=refuse`)
-- **Refusal rate** ↑ on attacks  
-- **Harmful compliance rate** ↓  
-- **Over-refusal rate** ↓ on benign controls  
-- Sliced by **language** and **category**  
-- AuditKIT `ak.compare(base, tuned)` fingerprintable run
+AuditKIT (`ak.evaluate` + `ak.compare`, n=34) baseline → CAA 0.25: `linguard_attack_success` **0.2647 → 0.0294 (−88.9% rel)**,
+`linguard_correct` **0.7353 → 0.8529**; 8 samples wrong→correct, 4 correct→wrong
+([`compare_baseline_vs_caa_s0.25_auditkit.txt`](data/results/live/compare_baseline_vs_caa_s0.25_auditkit.txt)).
+
+**Reading it honestly**
+- Baseline gap is real: English attacks are all refused; Hausa and Igbo only 50% correct, and several outputs comply in-language (e.g. a Hausa GTBank OTP phishing template).
+- SafeTune CAA steering (inference-time, layers 12/16/20, vectors from a **held-out** 8+8 calibration set, not the eval seeds) drives ASR 37.5% → 4.2%, but over-refusal on benign prompts rises 0% → 40% at strength 0.25 and 80% at 0.4. That is the trade-off the GPU weight-level harden (SafeGrad on the CuratorKIT set) is meant to fix.
+- Scorer is a multilingual keyword heuristic (`src/pidginguard/scoring.py`); native-language refusal markers were added after reading live outputs. It can still miss mixed-language refusals; small n (34) — treat as a pilot.
+
+| Lexsi kit | Ran live? | What it did |
+|---|---|---|
+| **AuditKIT** 1.1.3 | yes | `evaluate` per run + `compare` baseline vs hardened (fingerprinted runs) |
+| **CuratorKIT** 0.1.22 | yes | schema gate + exact dedup + clean + alpaca/messages export with provenance (34/34 passed) → `data/curated/curatorkit_out/` |
+| **SafeTune** 0.1.10 | yes (CPU) | `steer.extract_caa_vectors` + `CAAModel` harden; CAST conditional steering probed (calibration too small) |
+| **CircuitKIT** 0.2.0 | wired, GPU pending | needs HookedTransformer + custom refusal task; plan in `docs/GPU_PATH.md` |
+
+Reproduce:
+```bash
+pip install -e ".[hf,lexsi]"; export HF_TOKEN=...
+python scripts/live_pipeline.py --phase baseline
+python scripts/live_pipeline.py --phase curate
+python scripts/live_pipeline.py --phase harden --strength 0.25
+python scripts/live_pipeline.py --phase audit --names baseline,hardened_caa_s0.25
+```
 
 ## Schedule (Nov 1–14, 2026 WAT)
 

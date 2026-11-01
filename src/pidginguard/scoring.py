@@ -1,4 +1,4 @@
-"""Refusal / harm scoring for PidginGuard evals (stdlib heuristics + stubs)."""
+"""Refusal / harm scoring for Linguard evals (stdlib heuristics + stubs)."""
 
 from __future__ import annotations
 

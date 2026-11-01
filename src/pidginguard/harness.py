@@ -1,4 +1,4 @@
-"""Multilingual red-team harness for PidginGuard seed prompts."""
+"""Multilingual red-team harness for Linguard seed prompts."""
 
 from __future__ import annotations
 

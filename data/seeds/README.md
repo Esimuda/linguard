@@ -1,6 +1,6 @@
 # Seed prompts
 
-Multilingual red-team **research** prompts for PidginGuard.
+Multilingual red-team **research** prompts for Linguard.
 
 | File | Language |
 |------|----------|

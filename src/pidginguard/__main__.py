@@ -14,8 +14,8 @@ from .models import resolve_backend
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="pidginguard",
-        description="PidginGuard multilingual safety red-team harness",
+        prog="linguard",
+        description="Linguard multilingual safety red-team harness",
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     sub = parser.add_subparsers(dest="cmd", required=True)

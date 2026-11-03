@@ -31,3 +31,4 @@ hf_cache/
 data/results/live/*.pt
 !data/curated/repair_corpus.jsonl
 !data/curated/curatorkit_out/
+logs/

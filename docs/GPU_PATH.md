@@ -19,6 +19,19 @@ python scripts/live_pipeline.py --phase baseline   # re-run on the hardened chec
 Push the adapter to `Esimuda/linguard-tiny-aya-earth-lora`.
 
 ## 2. CircuitKIT safety-circuit discovery
+
+## CircuitKIT registration (CPU-safe) → GPU discover
+
+```bash
+# Registers task `linguard_refusal` from data/seeds/*.jsonl (refuse vs answer)
+python scripts/register_linguard_circuit_task.py
+
+# GPU only — will no-op with a clear skip on CPU-only hosts (does not fake metrics)
+python scripts/register_linguard_circuit_task.py --discover --n-examples 34 \
+  --hub-repo Esimuda/linguard-circuit
+```
+
+
 CircuitKIT `discover()` needs a TransformerLens `HookedTransformer` and a registered task. Built-in tasks
 (`ioi`, `wmdp`, `truthfulqa`, ...) do not include multilingual refusal, so register a Linguard refusal task
 (`ck.register_task(spec)`) from `data/seeds/*.jsonl` (harmful = refuse, benign = answer), then:
@@ -32,4 +45,4 @@ Feed `circuit` layer suggestions back into SafeTune `target_layers` (CPU run use
 
 ## 3. Bigger calibration for conditional steering (SafeTune CAST)
 `fit_cast_condition` on 8+8 calibration prompts gave F1=0.8 and mis-gated benign Hausa prompts.
-Grow `data/calibration/caa_calibration.jsonl` to 100+ per class (held out from eval seeds) before using CAST.
+Calibration is grown past 50+/class in `data/calibration/caa_calibration.jsonl` (held out from eval seeds). Aim for 100+/class before relying on CAST in production; current size is enough for stronger CAST pilots.

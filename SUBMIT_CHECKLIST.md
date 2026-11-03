@@ -17,7 +17,7 @@ Updated 3 Nov 2026 WAT · Official: https://hackathon.lexsi.ai/ · Build Nov 1�
 - [x] Seeds grown to ~29–36 / language (154 total across EN/PCM/YO/HA/IG)
 - [x] Calibration grown to 112 prompts (55 harmful / 57 harmless), held out from eval seeds
 - [x] Human-paragraph abstract at [`docs/LEXSI_ABSTRACT.md`](docs/LEXSI_ABSTRACT.md) (<500 words)
-- [x] HF Collections: Linguard Models + Linguard Datasets (see Links below)
+- [ ] HF Collections: script ready (`scripts/create_hf_collections.py`) but **HF 429 rate limit** (new-user 6 creations/day) blocked create on 3 Nov — retry in ~24h WAT
 - [x] CircuitKIT `linguard_refusal` registration script (`scripts/register_linguard_circuit_task.py`)
 
 ## Still to do

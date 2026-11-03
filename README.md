@@ -8,9 +8,9 @@
 Lexsi AI Safety & Alignment Hackathon · Track: **AI Red Teaming / Safety and Alignment**  
 Solo · Ticket `#27J8-ENVZ-WV7M` · Builder: **Olabowale Babalola** (GitHub [@Esimuda](https://github.com/Esimuda); videos as Israel)
 
-> Status 1 Nov 2026 (WAT): **live run done on CPU** — Tiny Aya Earth baseline, AuditKIT, CuratorKIT, SafeTune harden all executed with real Lexsi kits. Weight-level SafeTune + CircuitKIT need GPU (see [`docs/GPU_PATH.md`](docs/GPU_PATH.md)).
+> Status 3 Nov 2026 (WAT): **live CPU run + data/collections upgrade** — Tiny Aya Earth baseline, AuditKIT, CuratorKIT, SafeTune CAA harden executed with real Lexsi kits. Seeds grown to **154** (≈29–36/lang); calibration **112** (55/57). HF Collections created. CircuitKIT task `linguard_refusal` registerable via script. Weight-level SafeTune + CircuitKIT **discover** still need GPU ([`docs/GPU_PATH.md`](docs/GPU_PATH.md)). Abstract: [`docs/LEXSI_ABSTRACT.md`](docs/LEXSI_ABSTRACT.md).
 
-**Live artifacts:** dataset [`Esimuda/linguard-safety`](https://huggingface.co/datasets/Esimuda/linguard-safety) · steering vectors [`Esimuda/linguard-caa-vectors`](https://huggingface.co/Esimuda/linguard-caa-vectors) · demo Space [`Esimuda/linguard`](https://huggingface.co/spaces/Esimuda/linguard)
+**Live artifacts:** dataset [`Esimuda/linguard-safety`](https://huggingface.co/datasets/Esimuda/linguard-safety) · steering vectors [`Esimuda/linguard-caa-vectors`](https://huggingface.co/Esimuda/linguard-caa-vectors) · demo Space [`Esimuda/linguard`](https://huggingface.co/spaces/Esimuda/linguard) · collections via `scripts/create_hf_collections.py` · abstract [`docs/LEXSI_ABSTRACT.md`](docs/LEXSI_ABSTRACT.md)
 
 ---
 
@@ -63,7 +63,7 @@ Hackathon hub: [hackathon.lexsi.ai](https://hackathon.lexsi.ai/)
 
 | Offline (no token) | Live (done 1 Nov on CPU unless noted) |
 |-----------------|-----------------------------|
-| Seed prompts (34 across 5 languages) | Live Tiny Aya generations (gated HF) |
+| Seed prompts (154 across 5 languages; live metrics still n=34) | Live Tiny Aya generations (gated HF) |
 | `echo` / `fixture` backends | CuratorKIT generation with local Ollama/vLLM or allowed free route |
 | Harness + refusal/harm heuristic scorer | SafeTune harden on GPU |
 | Export corpus for CuratorKIT | CircuitKIT discovery on Tiny Aya |
@@ -125,7 +125,7 @@ AuditKIT (`ak.evaluate` + `ak.compare`, n=34) baseline → CAA 0.25: `linguard_a
 | **AuditKIT** 1.1.3 | yes | `evaluate` per run + `compare` baseline vs hardened (fingerprinted runs) |
 | **CuratorKIT** 0.1.22 | yes | schema gate + exact dedup + clean + alpaca/messages export with provenance (34/34 passed) → `data/curated/curatorkit_out/` |
 | **SafeTune** 0.1.10 | yes (CPU) | `steer.extract_caa_vectors` + `CAAModel` harden; CAST conditional steering probed (calibration too small) |
-| **CircuitKIT** 0.2.0 | wired, GPU pending | needs HookedTransformer + custom refusal task; plan in `docs/GPU_PATH.md` |
+| **CircuitKIT** 0.2.0 | wired, GPU pending | `linguard_refusal` registerable (`scripts/register_linguard_circuit_task.py`); `discover` needs CUDA — `docs/GPU_PATH.md` |
 
 Reproduce:
 ```bash
@@ -158,8 +158,11 @@ pidginguard/
   docs/LEXSI_WIRING.md      # real kit interfaces
   docs/METRICS.md
   docs/SCHEDULE.md
+  docs/LEXSI_ABSTRACT.md    # human-paragraph Lexsi abstract
+  docs/GPU_PATH.md          # SafeGrad/LoRA + CircuitKIT GPU steps
   docs/demo/                # walkthrough plan / future clip
-  scripts/                  # thin wrappers
+  notebooks/                # Colab/ZeroGPU SafeGrad stub
+  scripts/                  # publish, collections, circuit task, live pipeline
   tests/
 ```
 

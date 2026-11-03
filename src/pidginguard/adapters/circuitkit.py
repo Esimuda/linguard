@@ -26,7 +26,7 @@ class InstallError(RuntimeError):
 def discover_safety_circuit(
     model_id: str = "CohereLabs/tiny-aya-earth",
     *,
-    task: str = "ioi",
+    task: str = "linguard_refusal",
     algorithm: str = "eap-ig",
     sparsity: float = 0.3,
     export_dir: str | Path = "data/results/circuit_checkpoint",

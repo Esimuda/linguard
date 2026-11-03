@@ -12,6 +12,7 @@ import sys
 from typing import Optional
 
 from huggingface_hub import HfApi
+from huggingface_hub.errors import HfHubHTTPError
 
 
 OWNER = "Esimuda"
@@ -71,8 +72,19 @@ def main() -> int:
     if who.get("name") != OWNER:
         print(f"warning: authenticated as {who.get('name')!r}, expected {OWNER!r}", file=sys.stderr)
 
-    models_slug = _ensure_collection(api, MODELS_TITLE, MODELS_DESC)
-    datasets_slug = _ensure_collection(api, DATASETS_TITLE, DATASETS_DESC)
+    try:
+        models_slug = _ensure_collection(api, MODELS_TITLE, MODELS_DESC)
+        datasets_slug = _ensure_collection(api, DATASETS_TITLE, DATASETS_DESC)
+    except HfHubHTTPError as exc:
+        msg = str(exc)
+        if '429' in msg or 'rate limit' in msg.lower():
+            print('BLOCKED: HF collection creation rate limit (new-user ~6/day). Retry in ~24h.', file=sys.stderr)
+            print('Expected URLs once created:')
+            print('  https://huggingface.co/collections/Esimuda/linguard-models')
+            print('  https://huggingface.co/collections/Esimuda/linguard-datasets')
+            print('(exact slug may include a numeric suffix; script prints real URLs on success)')
+            return 3
+        raise
 
     api.add_collection_item(
         models_slug,

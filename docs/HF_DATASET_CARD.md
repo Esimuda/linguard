@@ -8,13 +8,13 @@ size_categories: [n<1K]
 ---
 # Linguard Safety — guarding language
 
-Red-team seeds, held-out steering calibration set, CuratorKIT repair dataset, and live Tiny Aya Earth transcripts
+Red-team seeds (154 across EN/PCM/YO/HA/IG), held-out steering calibration set, CuratorKIT repair dataset, and live Tiny Aya Earth transcripts
 for the Lexsi AI Safety & Alignment Hackathon (Nov 2026). Code: https://github.com/Esimuda/pidginguard
 
 | Folder | Contents |
 |---|---|
 | `seeds/` | 34 prompts (24 attacks: scam, social engineering, harmful advice, refusal-failure; 10 benign) in EN/PCM/YO/HA/IG |
-| `calibration/` | 16 held-out prompts (8 harmful / 8 harmless) used only for SafeTune CAA vectors |
+| `calibration/` | 112 held-out prompts (55 harmful / 57 harmless) used for SafeTune CAA / CAST pilots |
 | `curated/` | CuratorKIT export: `sft_alpaca.jsonl`, `sft_messages.jsonl`, provenance + checksums |
 | `results/` | Baseline and SafeTune-hardened transcripts, summaries, AuditKIT runs |
 

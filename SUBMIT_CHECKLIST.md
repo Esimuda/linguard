@@ -7,30 +7,36 @@ Updated 3 Nov 2026 WAT · Official: https://hackathon.lexsi.ai/ · Build Nov 1�
 - [x] HF account `Esimuda`, write token on box (not in repo)
 - [x] CohereLabs/tiny-aya-earth licence accepted; weights downloaded
 - [x] Real Lexsi kits installed: auditkit 1.1.3, curatorkit 0.1.22, safetune 0.1.10, circuitkit 0.2.0
-- [x] Live baseline on Tiny Aya Earth (34 seeds × 5 languages) + AuditKIT evaluate
+- [x] Live baseline on Tiny Aya Earth (initial 34 seeds × 5 languages) + AuditKIT evaluate
 - [x] CuratorKIT repair dataset (34/34 passed gates) → HF dataset `Esimuda/linguard-safety`
 - [x] SafeTune CAA harden (CPU) at strength 0.25 / 0.4 + AuditKIT compare
 - [x] Before/after table in README (real numbers)
 - [x] HF Space `Esimuda/linguard` (static demo page)
 - [x] Renamed user-facing brand to Linguard
-- [x] Submitted once (3 Nov) — confirmation email received; latest submission counts
-- [x] Human-paragraph abstract drafted at `docs/submit/ABSTRACT.md` (228 words)
-- [x] Seed set grown locally 34 → 74; calibration 16 → 32 (`data/seeds`, `data/calibration`) — Hub + re-eval still pending
+- [x] Official form submitted (latest submission counts; confirmation email to babalolabowale01@gmail.com)
+- [x] Seeds grown to ~29–36 / language (154 total across EN/PCM/YO/HA/IG)
+- [x] Calibration grown to 112 prompts (55 harmful / 57 harmless), held out from eval seeds
+- [x] Human-paragraph abstract at [`docs/LEXSI_ABSTRACT.md`](docs/LEXSI_ABSTRACT.md) (<500 words)
+- [x] HF Collections: Linguard Models + Linguard Datasets (see Links below)
+- [x] CircuitKIT `linguard_refusal` registration script (`scripts/register_linguard_circuit_task.py`)
 
-## Still to do (ranked for judges)
-1. [ ] **HF model + dataset collections** (form requires both; currently none on Esimuda). Token `Linguard-Lexsi-2026-11` lacks collection.create (API 403) — create in HF UI or mint token with collection write.
-2. [ ] **Claim HF credits → GPU SafeGrad/LoRA** on CuratorKIT set to cut 40% over-refusal — `docs/GPU_PATH.md`; push `Esimuda/linguard-tiny-aya-earth-lora`
-3. [ ] **CircuitKIT discover** on GPU (4th kit live) + feed layers into SafeTune
-4. [ ] Push grown seeds/calibration to `Esimuda/linguard-safety` and re-run AuditKIT before/after (CPU possible but slow; GPU preferred)
-5. [ ] Resubmit with paragraph abstract + collection URLs (`docs/submit/RESUBMIT_PACKAGE.md`)
-6. [ ] Optional HF Article; re-record Linguard demo video (not a form field)
-7. [ ] Optional: rename GitHub repo to `linguard` (needs owner OK)
+## Still to do
+- [ ] Claim HF credits → GPU run: SafeTune SafeGrad/LoRA on CuratorKIT set (fix 40% over-refusal) — `docs/GPU_PATH.md` · stub `notebooks/linguard_safeggrad_lora_stub.md`
+- [ ] CircuitKIT: GPU `discover` after registration; push `Esimuda/linguard-circuit`; feed layers into SafeTune
+- [ ] Re-run live Tiny Aya baseline + CAA + AuditKIT on the **grown** seed set (needs HF weights / time; CPU live pass was on n=34)
+- [ ] Optional: grow calibration toward 100+/class for stronger CAST; optional LLM-judge (AuditKIT GuardJudge)
+- [ ] Re-record demo video with the Linguard name + live before/after (old video shows offline harness)
+- [ ] Optional: rename GitHub repo to `linguard` (needs owner OK)
+- [ ] Optional resubmit form with cleaned abstract paragraphs if Lexsi UI still strips newlines in the confirmation email
 
-## Submit payload (draft)
+## Submit payload
 - Project: **Linguard — guarding language**
-- Track: AI Red Teaming / Safety & Alignment (Track 2a+2b; kits: AuditKIT, CuratorKIT, SafeTune; CircuitKIT wired)
+- Track: AI Red Teaming / Safety & Alignment (Track 2a+2b kits: AuditKIT, CuratorKIT, SafeTune; CircuitKIT wired)
 - Repo: https://github.com/Esimuda/pidginguard
 - Demo: https://huggingface.co/spaces/Esimuda/linguard
 - Dataset: https://huggingface.co/datasets/Esimuda/linguard-safety · Vectors: https://huggingface.co/Esimuda/linguard-caa-vectors
-- Abstract: `docs/submit/ABSTRACT.md`
+- Collections: Models + Datasets under https://huggingface.co/Esimuda (created by `scripts/create_hf_collections.py`)
+- Abstract: [`docs/LEXSI_ABSTRACT.md`](docs/LEXSI_ABSTRACT.md)
 - One-liner: Tiny Aya refuses scams in English but helps with them in Hausa/Igbo. Linguard red-teams 5 Nigerian languages, curates repair data with CuratorKIT, hardens with SafeTune, and audits with AuditKIT: ASR 37.5% → 4.2% (over-refusal 0% → 40%, the next fix).
+- Form notes: Lexsi submission page has **no dedicated demo-video upload field** in the public form; latest submission replaces prior. Demo is the HF Space URL (+ optional video link in write-up if re-submitted).
+- Note: rules say projects must be built during the hackathon — pre-Nov-1 commits are scaffolding; all model work is dated 1 Nov 2026+.

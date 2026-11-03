@@ -35,14 +35,27 @@ Form: https://hackathon.lexsi.ai/submission/ (Tally `o9E0Ve`).
 - Demo/public: https://huggingface.co/spaces/Esimuda/linguard (put in article/demo-related links as applicable; Space is live)
 - Dataset repo: https://huggingface.co/datasets/Esimuda/linguard-safety
 - Model repo: https://huggingface.co/Esimuda/linguard-caa-vectors
-- Write-up / article field: GitHub README URL until an HF Article exists
+- Write-up / article field: paste `docs/submit/HF_ARTICLE.md` as an HF Article, then use that URL (fallback: GitHub README)
 
 ## Blockers before ideal resubmit
 
 1. **HF collections missing** — Esimuda has **0** collections. `create_collection` hit **429** “6 per day” new-user rate limit on 3 Nov ~13:32 Africa/Lagos; retry ~24h later or create in HF UI if quota allows.
 2. GPU SafeGrad/LoRA + CircuitKIT discover (box is CPU-only; need Lexsi $20 HF credits / Colab).
-3. Re-eval on expanded 74 seeds after GPU/harden (seeds already on Hub).
+3. Re-eval on expanded **154** seeds after GPU/harden (seeds already on Hub; live metrics still n=34).
 
 ## Prior confirmation abstract issue
 
 Email “Lexsi Hackathon: submission received” (3 Nov 2026, 12:23 Africa/Lagos) pasted the abstract as **one wall-of-text paragraph** (Tally/email formatting). Content was otherwise complete. Resubmit with `ABSTRACT.md` for human paragraphs in the form field.
+
+
+## Retry HF collections (after ~24h from 3 Nov ~13:32 Africa/Lagos)
+
+```bash
+cd pidginguard
+export HF_TOKEN=…   # Esimuda write token; never commit
+python scripts/create_hf_collections.py
+# On success prints:
+#   models_collection https://huggingface.co/collections/<slug>
+#   datasets_collection https://huggingface.co/collections/<slug>
+# Paste those two URLs into the Lexsi form collection fields, then resubmit.
+```

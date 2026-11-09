@@ -34,6 +34,7 @@ By language, the original model helped with about half of the harmful Hausa prom
 - Demo Space: https://huggingface.co/spaces/Esimuda/linguard
 - Hardened model: https://huggingface.co/Esimuda/linguard-tiny-aya-earth-lora
 - Dataset: https://huggingface.co/datasets/Esimuda/linguard-safety
+- Demo video: https://youtu.be/-rBvL5wJ8WA
 - Models collection: https://huggingface.co/collections/Esimuda/linguard-models-6af179733692a6fca0986d8b
 - Datasets collection: https://huggingface.co/collections/Esimuda/linguard-datasets-6af179e0ebb37eb4c95a6830
 

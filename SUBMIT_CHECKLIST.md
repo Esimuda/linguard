@@ -1,4 +1,4 @@
-# Linguard (was PidginGuard) — Lexsi submit checklist
+# Linguard — Lexsi submit checklist
 Updated 3 Nov 2026 WAT · Official: https://hackathon.lexsi.ai/ · Build Nov 1–14 · **Submit by EOD Nov 14** · Registration closes Nov 5 · Shortlist Nov 16 · Demo Day Nov 22
 
 ## Done
@@ -32,7 +32,7 @@ Updated 3 Nov 2026 WAT · Official: https://hackathon.lexsi.ai/ · Build Nov 1�
 ## Submit payload
 - Project: **Linguard — guarding language**
 - Track: AI Red Teaming / Safety & Alignment (Track 2a+2b kits: AuditKIT, CuratorKIT, SafeTune; CircuitKIT wired)
-- Repo: https://github.com/Esimuda/pidginguard
+- Repo: https://github.com/Esimuda/linguard
 - Demo: https://huggingface.co/spaces/Esimuda/linguard
 - Dataset: https://huggingface.co/datasets/Esimuda/linguard-safety · Vectors: https://huggingface.co/Esimuda/linguard-caa-vectors
 - Collections: Models + Datasets under https://huggingface.co/Esimuda (created by `scripts/create_hf_collections.py`)

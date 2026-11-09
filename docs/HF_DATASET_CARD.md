@@ -9,7 +9,7 @@ size_categories: [n<1K]
 # Linguard Safety — guarding language
 
 Red-team seeds (154 across EN/PCM/YO/HA/IG), held-out steering calibration set, CuratorKIT repair dataset, and live Tiny Aya Earth transcripts
-for the Lexsi AI Safety & Alignment Hackathon (Nov 2026). Code: https://github.com/Esimuda/pidginguard
+for the Lexsi AI Safety & Alignment Hackathon (Nov 2026). Code: https://github.com/Esimuda/linguard
 
 | Folder | Contents |
 |---|---|

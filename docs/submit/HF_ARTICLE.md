@@ -25,7 +25,7 @@ The 40% over-refusal is the honest next problem — GPU SafeGrad/LoRA on the Cur
 
 ## Links
 
-- Code: [github.com/Esimuda/pidginguard](https://github.com/Esimuda/pidginguard)  
+- Code: [github.com/Esimuda/linguard](https://github.com/Esimuda/linguard)  
 - Demo Space: [Esimuda/linguard](https://huggingface.co/spaces/Esimuda/linguard)  
 - Abstract (paste-ready): `docs/submit/ABSTRACT.md` in the repo  
 

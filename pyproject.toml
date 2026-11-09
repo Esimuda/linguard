@@ -33,7 +33,7 @@ linguard = "pidginguard.__main__:main"
 pidginguard = "pidginguard.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/Esimuda/pidginguard"
+Homepage = "https://github.com/Esimuda/linguard"
 Hackathon = "https://hackathon.lexsi.ai/"
 
 [tool.setuptools.packages.find]

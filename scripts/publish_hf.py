@@ -21,7 +21,7 @@ api.upload_file(path_or_fileobj=(
     "---\nbase_model: CohereLabs/tiny-aya-earth\nlicense: mit\ntags: [safety, steering, safetune, lexsi, linguard]\n---\n"
     "# Linguard CAA steering vectors for Tiny Aya Earth\n\nSafeTune `extract_caa_vectors` on layers 12/16/20 from the held-out "
     "calibration set (`Esimuda/linguard-safety/calibration`). Apply with `safetune.steer.CAAModel(model, torch.load('caa_vectors.pt'), strength=0.25)`.\n"
-    "Inference-time harden only (no weight changes). Metrics: https://github.com/Esimuda/pidginguard\n").encode(), path_in_repo="README.md", repo_id=VEC)
+    "Inference-time harden only (no weight changes). Metrics: https://github.com/Esimuda/linguard\n").encode(), path_in_repo="README.md", repo_id=VEC)
 
 api.create_repo(SP, repo_type="space", space_sdk="static", exist_ok=True)
 api.upload_folder(folder_path=str(ROOT / "space"), repo_id=SP, repo_type="space")

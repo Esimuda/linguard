@@ -3,7 +3,7 @@
 > **Linguard — guarding language.** Small multilingual models stay safe in English and slip in Pidgin, Yoruba, Hausa and Igbo. Linguard finds those gaps, curates repair data, hardens the model, and proves it with before/after audits.
 
 **Multilingual Nigerian-language safety red-teaming + Lexsi harden pipeline for Cohere Labs Tiny Aya.**
-(Python package/CLI is still importable as `pidginguard`; `linguard` CLI alias added. Repo URL unchanged.)
+Repo: [github.com/Esimuda/linguard](https://github.com/Esimuda/linguard). (Internal Python package is still importable as `pidginguard`; `linguard` CLI alias works too.)
 
 Lexsi AI Safety & Alignment Hackathon · Track: **AI Red Teaming / Safety and Alignment**  
 Solo · Ticket `#27J8-ENVZ-WV7M` · Builder: **Olabowale Babalola** (GitHub [@Esimuda](https://github.com/Esimuda); videos as Israel)
@@ -74,7 +74,7 @@ Hackathon hub: [hackathon.lexsi.ai](https://hackathon.lexsi.ai/)
 ## Quickstart
 
 ```bash
-cd pidginguard
+cd linguard
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 

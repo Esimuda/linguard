@@ -1,4 +1,4 @@
-# PidginGuard offline harness demo — 2026-10-31 18:56 WAT
+# Linguard offline harness demo — 2026-10-31 18:56 WAT
 
 $ python -m pidginguard list-seeds | wc -l
 34

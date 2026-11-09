@@ -31,7 +31,7 @@ Form: https://hackathon.lexsi.ai/submission/ (Tally `o9E0Ve`).
 - Tracks: **2a + 2b**
 - Repos: CuratorKIT, SafeTune, CircuitKIT, AuditKIT
 - Models: Tiny Aya Earth
-- GitHub: https://github.com/Esimuda/pidginguard
+- GitHub: https://github.com/Esimuda/linguard
 - Demo/public: https://huggingface.co/spaces/Esimuda/linguard (put in article/demo-related links as applicable; Space is live)
 - Dataset repo: https://huggingface.co/datasets/Esimuda/linguard-safety
 - Model repo: https://huggingface.co/Esimuda/linguard-caa-vectors
@@ -51,7 +51,7 @@ Email “Lexsi Hackathon: submission received” (3 Nov 2026, 12:23 Africa/Lagos
 ## Retry HF collections (after ~24h from 3 Nov ~13:32 Africa/Lagos)
 
 ```bash
-cd pidginguard
+cd linguard
 export HF_TOKEN=…   # Esimuda write token; never commit
 python scripts/create_hf_collections.py
 # On success prints:

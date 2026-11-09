@@ -4,7 +4,7 @@ Box is CPU-only. Run this on Colab T4/L4 or HF ZeroGPU after claiming Lexsi $20 
 
 ```bash
 !pip install -q datasets transformers accelerate peft safetune auditkit curatorkit
-# or: pip install -e ".[hf,lexsi]" from a clone of Esimuda/pidginguard
+# or: pip install -e ".[hf,lexsi]" from a clone of Esimuda/linguard
 import os
 os.environ["HF_TOKEN"] = ...  # Esimuda write token
 from datasets import load_dataset

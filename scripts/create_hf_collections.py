@@ -22,12 +22,12 @@ MODELS_DESC = (
     "Linguard (Lexsi AI Safety hackathon) — SafeTune CAA steering vectors and "
     "related model artifacts for Tiny Aya Earth multilingual Nigerian-language safety. "
     "Demo Space: https://huggingface.co/spaces/Esimuda/linguard · "
-    "Repo: https://github.com/Esimuda/pidginguard"
+    "Repo: https://github.com/Esimuda/linguard"
 )
 DATASETS_DESC = (
     "Linguard safety datasets — multilingual red-team seeds (EN/PCM/YO/HA/IG), "
     "held-out CAA calibration, CuratorKIT repair exports, and live eval transcripts. "
-    "Repo: https://github.com/Esimuda/pidginguard"
+    "Repo: https://github.com/Esimuda/linguard"
 )
 
 
@@ -39,6 +39,7 @@ def _find_collection(api: HfApi, title: str) -> Optional[object]:
 
 
 def _ensure_collection(api: HfApi, title: str, description: str) -> str:
+    description = description[:150]
     existing = _find_collection(api, title)
     if existing is not None:
         slug = existing.slug

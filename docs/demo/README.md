@@ -1,6 +1,6 @@
 # docs/demo
 
-**Demo video (1:50):** https://youtu.be/er5yVB2xrWY
+**Demo video (1:35):** https://youtu.be/-rBvL5wJ8WA
 
 Earlier offline clip:
 

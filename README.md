@@ -2,7 +2,7 @@
 
 > **Linguard — guarding language.** Small multilingual models stay safe in English and slip in Pidgin, Yoruba, Hausa and Igbo. Linguard finds those gaps, curates repair data, hardens the model, and proves it with before/after audits.
 
-**Demo video (1:50):** https://youtu.be/er5yVB2xrWY
+**Demo video (1:35):** https://youtu.be/-rBvL5wJ8WA
 
 **Multilingual Nigerian-language safety red-teaming + Lexsi harden pipeline for Cohere Labs Tiny Aya.**
 Repo: [github.com/Esimuda/linguard](https://github.com/Esimuda/linguard). (Internal Python package is still importable as `pidginguard`; `linguard` CLI alias works too.)
@@ -190,7 +190,7 @@ pidginguard/
 
 ## Demo
 
-**Demo video (1:50):** https://youtu.be/er5yVB2xrWY
+**Demo video (1:35):** https://youtu.be/-rBvL5wJ8WA
 
 See [`DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md).
 

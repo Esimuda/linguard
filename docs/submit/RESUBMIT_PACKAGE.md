@@ -1,6 +1,6 @@
 # Linguard resubmit package (draft)
 
-**Demo video (1:50):** https://youtu.be/er5yVB2xrWY
+**Demo video (1:35):** https://youtu.be/-rBvL5wJ8WA
 
 Latest Lexsi submission counts. Deadline: end of day **14 Nov 2026 AoE**.
 Form: https://hackathon.lexsi.ai/submission/ (Tally `o9E0Ve`).
@@ -34,7 +34,7 @@ Form: https://hackathon.lexsi.ai/submission/ (Tally `o9E0Ve`).
 - Repos: CuratorKIT, SafeTune, CircuitKIT, AuditKIT
 - Models: Tiny Aya Earth
 - GitHub: https://github.com/Esimuda/linguard
-- Demo video (1:50): https://youtu.be/er5yVB2xrWY
+- Demo video (1:35): https://youtu.be/-rBvL5wJ8WA
 - Demo/public: https://huggingface.co/spaces/Esimuda/linguard (put in article/demo-related links as applicable; Space is live)
 - Dataset repo: https://huggingface.co/datasets/Esimuda/linguard-safety
 - Model repos: https://huggingface.co/Esimuda/linguard-tiny-aya-earth-lora · https://huggingface.co/Esimuda/linguard-caa-vectors · https://huggingface.co/Esimuda/linguard-circuit

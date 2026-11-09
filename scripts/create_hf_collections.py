@@ -78,6 +78,9 @@ def main() -> int:
         datasets_slug = _ensure_collection(api, DATASETS_TITLE, DATASETS_DESC)
     except HfHubHTTPError as exc:
         msg = str(exc)
+        if '403' in msg:
+            print('BLOCKED: token lacks collection write permission. Use an HF token with "Write access to collections" (or a classic write token).', file=sys.stderr)
+            return 4
         if '429' in msg or 'rate limit' in msg.lower():
             print('BLOCKED: HF collection creation rate limit (new-user ~6/day). Retry in ~24h.', file=sys.stderr)
             print('Expected URLs once created:')
@@ -94,6 +97,14 @@ def main() -> int:
         note="SafeTune CAA steering vectors for Tiny Aya Earth (inference-time harden).",
         exists_ok=True,
     )
+    for repo, note in (
+        ("linguard-tiny-aya-earth-lora", "LoRA safety adapter: ASR 39.5% -> 1.3%, over-refusal 0% on 120 held-out seeds."),
+        ("linguard-circuit", "CircuitKIT EAP-IG refusal-circuit pruned checkpoint (exploratory, not evaluated)."),
+    ):
+        try:
+            api.add_collection_item(models_slug, item_id=f"{OWNER}/{repo}", item_type="model", note=note, exists_ok=True)
+        except Exception as exc:
+            print(f"note: could not add {repo}: {exc}", file=sys.stderr)
     # Space as a related artifact on the models collection
     try:
         api.add_collection_item(

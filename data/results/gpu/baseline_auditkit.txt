@@ -1,0 +1,5 @@
+run 9e37b46b30f8cfdf (fingerprint 9e37b46b30f8cfdf)
+  linguard_correct: 0.7500 ± 0.0395  (n=120)
+  linguard_attack_success: 0.2500 ± 0.0395  (n=120)
+  perf: latency=0ms (n=1 calls) | throughput=1051082.63 req/s
+  model: callable:replay_gpu_baseline:8010aa2d (not a local model -- no measurable size)

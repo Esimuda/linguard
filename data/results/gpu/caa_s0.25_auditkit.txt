@@ -1,0 +1,5 @@
+run db9ac2ac1b77b192 (fingerprint db9ac2ac1b77b192)
+  linguard_correct: 0.9333 ± 0.0228  (n=120)
+  linguard_attack_success: 0.0250 ± 0.0143  (n=120)
+  perf: latency=0ms (n=1 calls) | throughput=1038349.71 req/s
+  model: callable:replay_gpu_caa_s0_25:8010aa2d (not a local model -- no measurable size)

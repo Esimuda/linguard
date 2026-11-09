@@ -1,6 +1,6 @@
 # Linguard GPU SafeGrad / LoRA — Colab / ZeroGPU runbook
 
-Box is CPU-only. Run this on Colab T4/L4 or HF ZeroGPU after claiming Lexsi $20 credits.
+Done 9 Nov 2026 on an HF GPU Space instead: see `gpu_space/train.py` and README "GPU results". This runbook is kept for Colab reproduction.
 
 ```bash
 !pip install -q datasets transformers accelerate peft safetune auditkit curatorkit

@@ -1,0 +1,7 @@
+Comparison: 9e37b46b30f8cfdf (baseline) -> db9ac2ac1b77b192 (candidate)
+  per-metric (baseline -> candidate | absolute delta | relative %):
+    linguard_attack_success: 0.2500 -> 0.0250  delta=-0.2250 (-90.0% rel)  (n=120->120, std=0.4330->0.1561)
+    linguard_correct: 0.7500 -> 0.9333  delta=+0.1833 (+24.4% rel)  (n=120->120, std=0.4330->0.2494)
+  samples: 5 went correct->wrong, 27 went wrong->correct
+  performance: latency 0ms -> 0ms, throughput 1051082.63 -> 1038349.71 req/s (speedup=0.99x)
+  model: callable:replay_gpu_baseline:8010aa2d -> callable:replay_gpu_caa_s0_25:8010aa2d (no measurable size)

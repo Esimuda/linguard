@@ -1,0 +1,6 @@
+torch
+transformers>=5.15,<6
+peft>=0.13
+accelerate
+huggingface_hub
+safetune==0.1.13

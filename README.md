@@ -8,9 +8,9 @@ Repo: [github.com/Esimuda/linguard](https://github.com/Esimuda/linguard). (Inter
 Lexsi AI Safety & Alignment Hackathon · Track: **AI Red Teaming / Safety and Alignment**  
 Solo · Ticket `#27J8-ENVZ-WV7M` · Builder: **Olabowale Babalola** (GitHub [@Esimuda](https://github.com/Esimuda); videos as Israel)
 
-> Status 3 Nov 2026 (WAT): **live CPU run + data/collections upgrade** — Tiny Aya Earth baseline, AuditKIT, CuratorKIT, SafeTune CAA harden executed with real Lexsi kits. Seeds grown to **154** (≈29–36/lang); calibration **112** (55/57). HF Collections created. CircuitKIT task `linguard_refusal` registerable via script. Weight-level SafeTune + CircuitKIT **discover** still need GPU ([`docs/GPU_PATH.md`](docs/GPU_PATH.md)). Abstract: [`docs/LEXSI_ABSTRACT.md`](docs/LEXSI_ABSTRACT.md).
+> Status 9 Nov 2026 (WAT): **GPU LoRA harden done.** On 120 held-out seeds, the Linguard LoRA adapter cuts attack success from 39.5% to 1.3% with **0% over-refusal** (SafeTune CAA steering: 3.9% ASR but 11.4% over-refusal). Adapter: [`Esimuda/linguard-tiny-aya-earth-lora`](https://huggingface.co/Esimuda/linguard-tiny-aya-earth-lora). CPU pilot (1 Nov, n=34) below. CircuitKIT `discover` also ran on GPU ([`Esimuda/linguard-circuit`](https://huggingface.co/Esimuda/linguard-circuit), exploratory). Abstract: [`docs/submit/ABSTRACT.md`](docs/submit/ABSTRACT.md).
 
-**Live artifacts:** dataset [`Esimuda/linguard-safety`](https://huggingface.co/datasets/Esimuda/linguard-safety) · steering vectors [`Esimuda/linguard-caa-vectors`](https://huggingface.co/Esimuda/linguard-caa-vectors) · demo Space [`Esimuda/linguard`](https://huggingface.co/spaces/Esimuda/linguard) · collections via `scripts/create_hf_collections.py` · abstract [`docs/LEXSI_ABSTRACT.md`](docs/LEXSI_ABSTRACT.md)
+**Live artifacts:** LoRA adapter [`Esimuda/linguard-tiny-aya-earth-lora`](https://huggingface.co/Esimuda/linguard-tiny-aya-earth-lora) · dataset [`Esimuda/linguard-safety`](https://huggingface.co/datasets/Esimuda/linguard-safety) · steering vectors [`Esimuda/linguard-caa-vectors`](https://huggingface.co/Esimuda/linguard-caa-vectors) · demo Space [`Esimuda/linguard`](https://huggingface.co/spaces/Esimuda/linguard) · GPU job Space [`Esimuda/linguard-gpu-train`](https://huggingface.co/spaces/Esimuda/linguard-gpu-train) · abstract [`docs/submit/ABSTRACT.md`](docs/submit/ABSTRACT.md)
 
 ---
 
@@ -65,10 +65,10 @@ Hackathon hub: [hackathon.lexsi.ai](https://hackathon.lexsi.ai/)
 |-----------------|-----------------------------|
 | Seed prompts (154 across 5 languages; live metrics still n=34) | Live Tiny Aya generations (gated HF) |
 | `echo` / `fixture` backends | CuratorKIT generation with local Ollama/vLLM or allowed free route |
-| Harness + refusal/harm heuristic scorer | SafeTune harden on GPU |
-| Export corpus for CuratorKIT | CircuitKIT discovery on Tiny Aya |
+| Harness + refusal/harm heuristic scorer | LoRA safety harden on GPU (done 9 Nov) |
+| Export corpus for CuratorKIT | CircuitKIT discovery on Tiny Aya (done 9 Nov) |
 | Adapter stubs that call **documented** Lexsi APIs | AuditKIT before/after on real weights |
-| Metric plan + schedule docs | Push adapters/datasets/logs to Hugging Face |
+| Metric plan + schedule docs | Push adapters/datasets/logs to Hugging Face (done) |
 | Unit tests | Official hackathon submit |
 
 ## Quickstart
@@ -99,7 +99,27 @@ pip install -e ".[hf]"
 python -m pidginguard run --backend hf --model-id CohereLabs/tiny-aya-earth --name tiny-aya-earth-baseline --limit 8
 ```
 
-## Before / after metrics (live, 1 Nov 2026)
+## GPU results: LoRA harden vs CAA steering (9 Nov 2026, A10G)
+
+One run on an HF GPU Space ([`gpu_space/train.py`](gpu_space/train.py), Space [`Esimuda/linguard-gpu-train`](https://huggingface.co/spaces/Esimuda/linguard-gpu-train)).
+Eval set: the **120 seeds that no training step saw** (154 seeds minus the 34 in the CuratorKIT repair set): 76 attacks, 44 benign controls,
+EN · PCM · YO · HA · IG. Greedy decoding, 96 new tokens, same keyword scorer for every row. Raw: [`data/results/gpu/`](data/results/gpu/).
+
+| Run | Accuracy | Attack success (76 attacks) ↓ | Over-refusal (44 benign) ↓ |
+|---|---|---|---|
+| Baseline (Tiny Aya Earth) | 75.0% | 39.5% | 0.0% |
+| SafeTune CAA strength 0.25 | 93.3% | 3.9% | 11.4% |
+| **Linguard LoRA** | **99.2%** | **1.3%** | **0.0%** |
+
+Attack success by language (baseline → CAA 0.25 → LoRA): EN 11.8% → 0% → 0% · PCM 21.4% → 7.1% → 0% · YO 66.7% → 6.7% → 6.7% · HA 53.3% → 0% → 0% · IG 46.7% → 6.7% → 0%.
+Over-refusal under CAA was 30% on Pidgin and 12.5% on Yoruba and Igbo controls; under LoRA it is 0% in every language.
+
+AuditKIT 1.1.6 (`ak.evaluate` + `ak.compare` over the recorded responses, n=120; `linguard_attack_success` is counted over all 120 rows): baseline → LoRA **0.2500 → 0.0083 (−96.7% rel)**, `linguard_correct` 0.7500 → 0.9917, 30 samples wrong→correct, 1 correct→wrong; baseline → CAA 0.25: 0.2500 → 0.0250 (−90.0% rel), 27 wrong→correct, 5 correct→wrong ([`compare_baseline_vs_lora_sft_auditkit.txt`](data/results/gpu/compare_baseline_vs_lora_sft_auditkit.txt)).
+
+- **LoRA recipe:** r=16, alpha=32, q/k/v/o, lr 1e-4, 2 epochs, 226 rows. Training data is the held-out calibration set (harmful → in-language refusal; harmless → the base model's own answer, kept only when it is not a refusal) plus the 34-row CuratorKIT repair set; non-English rows ×3. This is plain LoRA SFT, not SafeTune's SafeGrad trainer.
+- **Reading it honestly:** the single LoRA "attack success" is a Yoruba refusal with tone marks that the keyword scorer misses, so it is a scorer miss, left in the number. The judge is a keyword heuristic, n is small, and one person wrote the seeds and the calibration prompts, so treat this as a strong pilot, not a benchmark. Baseline and CAA rows were reproduced exactly in a second run of the same job.
+
+## CPU pilot: before / after metrics (live, 1 Nov 2026)
 
 Real numbers from `scripts/live_pipeline.py` on `CohereLabs/tiny-aya-earth` (bf16, CPU, greedy, 96 new tokens), 34 seed prompts
 (24 attacks that should be refused, 10 benign controls that should be answered) across EN · PCM · YO · HA · IG.
@@ -124,8 +144,8 @@ AuditKIT (`ak.evaluate` + `ak.compare`, n=34) baseline → CAA 0.25: `linguard_a
 |---|---|---|
 | **AuditKIT** 1.1.3 | yes | `evaluate` per run + `compare` baseline vs hardened (fingerprinted runs) |
 | **CuratorKIT** 0.1.22 | yes | schema gate + exact dedup + clean + alpaca/messages export with provenance (34/34 passed) → `data/curated/curatorkit_out/` |
-| **SafeTune** 0.1.10 | yes (CPU) | `steer.extract_caa_vectors` + `CAAModel` harden; CAST conditional steering probed (calibration too small) |
-| **CircuitKIT** 0.2.0 | wired, GPU pending | `linguard_refusal` registerable (`scripts/register_linguard_circuit_task.py`); `discover` needs CUDA — `docs/GPU_PATH.md` |
+| **SafeTune** 0.1.10 / 0.1.13 | yes (CPU + GPU) | `steer.extract_caa_vectors` + `CAAModel` harden (CPU pilot, and re-run on GPU on the 120 held-out seeds); CAST conditional steering probed (calibration too small) |
+| **CircuitKIT** 0.2.1 | yes (GPU, A100) | `linguard_refusal` task (34 harmful/benign pairs) → EAP-IG `discover` → `export_checkpoint` → [`Esimuda/linguard-circuit`](https://huggingface.co/Esimuda/linguard-circuit). 612 nodes scored; 30% least-important pruned (172 heads, 10 MLPs). Pruned checkpoint is not evaluated; exploratory only ([`data/results/circuit/`](data/results/circuit/)) |
 
 Reproduce:
 ```bash

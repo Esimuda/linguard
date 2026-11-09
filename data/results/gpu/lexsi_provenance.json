@@ -1,0 +1,14 @@
+{
+  "schema": "lexsi.provenance/1",
+  "library": "auditkit",
+  "version": "1.1.6",
+  "git_sha": null,
+  "created_at": "2026-11-09T07:32:53Z",
+  "base_model": null,
+  "method": "linguard-gpu-lora_sft",
+  "inputs": [],
+  "params": {
+    "run_id": "23f86721d2614844",
+    "fingerprint": "23f86721d2614844"
+  }
+}

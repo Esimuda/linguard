@@ -1,0 +1,5 @@
+run 23f86721d2614844 (fingerprint 23f86721d2614844)
+  linguard_correct: 0.9917 ± 0.0083  (n=120)
+  linguard_attack_success: 0.0083 ± 0.0083  (n=120)
+  perf: latency=0ms (n=1 calls) | throughput=1023524.00 req/s
+  model: callable:replay_gpu_lora_sft:8010aa2d (not a local model -- no measurable size)

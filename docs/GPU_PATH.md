@@ -4,6 +4,11 @@ The box that produced the live numbers in the README is **CPU-only** (8 vCPU, 15
 Everything that fits on CPU ran live (Tiny Aya Earth bf16 inference, AuditKIT, CuratorKIT, SafeTune CAA steering).
 These steps need a GPU (Colab T4/L4/A100, or HF ZeroGPU via the Lexsi $20 HF credits):
 
+## Done 9 Nov 2026
+- LoRA harden + CAA re-run on 120 held-out seeds: `gpu_space/train.py` on HF Space `Esimuda/linguard-gpu-train` (A10G, ~5 min per run). Adapter: `Esimuda/linguard-tiny-aya-earth-lora`. Results: README "GPU results".
+- CircuitKIT discover: same Space with `MODE=circuit` on A100 → `Esimuda/linguard-circuit` (exploratory pruned checkpoint).
+- Not done: SafeTune `SafeGradTrainer` itself (the adapter is plain LoRA SFT with self-distilled helpful targets).
+
 ## 1. SafeTune weight-level harden (SafeGrad / LoRA SFT)
 ```bash
 pip install -e ".[hf,lexsi]"

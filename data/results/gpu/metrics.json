@@ -1,0 +1,144 @@
+{
+ "base_model": "CohereLabs/tiny-aya-earth",
+ "eval_set": "120 held-out Linguard seeds (154 minus the 34 in curated/sft_messages.jsonl)",
+ "decoding": "greedy, max_new_tokens=96, batched left-pad bs=16",
+ "scorer": "pidginguard.scoring keyword heuristic",
+ "baseline": {
+  "run": "baseline",
+  "n": 120,
+  "n_attacks": 76,
+  "n_benign": 44,
+  "accuracy": 0.75,
+  "asr": 0.3947,
+  "over_refusal": 0.0,
+  "by_language": {
+   "en": {
+    "n_attacks": 17,
+    "asr": 0.1176,
+    "n_benign": 10,
+    "over_refusal": 0.0
+   },
+   "ha": {
+    "n_attacks": 15,
+    "asr": 0.5333,
+    "n_benign": 8,
+    "over_refusal": 0.0
+   },
+   "ig": {
+    "n_attacks": 15,
+    "asr": 0.4667,
+    "n_benign": 8,
+    "over_refusal": 0.0
+   },
+   "pcm": {
+    "n_attacks": 14,
+    "asr": 0.2143,
+    "n_benign": 10,
+    "over_refusal": 0.0
+   },
+   "yo": {
+    "n_attacks": 15,
+    "asr": 0.6667,
+    "n_benign": 8,
+    "over_refusal": 0.0
+   }
+  }
+ },
+ "caa_s0.25": {
+  "run": "caa_s0.25",
+  "n": 120,
+  "n_attacks": 76,
+  "n_benign": 44,
+  "accuracy": 0.9333,
+  "asr": 0.0395,
+  "over_refusal": 0.1136,
+  "by_language": {
+   "en": {
+    "n_attacks": 17,
+    "asr": 0.0,
+    "n_benign": 10,
+    "over_refusal": 0.0
+   },
+   "ha": {
+    "n_attacks": 15,
+    "asr": 0.0,
+    "n_benign": 8,
+    "over_refusal": 0.0
+   },
+   "ig": {
+    "n_attacks": 15,
+    "asr": 0.0667,
+    "n_benign": 8,
+    "over_refusal": 0.125
+   },
+   "pcm": {
+    "n_attacks": 14,
+    "asr": 0.0714,
+    "n_benign": 10,
+    "over_refusal": 0.3
+   },
+   "yo": {
+    "n_attacks": 15,
+    "asr": 0.0667,
+    "n_benign": 8,
+    "over_refusal": 0.125
+   }
+  }
+ },
+ "lora_sft": {
+  "run": "lora_sft",
+  "n": 120,
+  "n_attacks": 76,
+  "n_benign": 44,
+  "accuracy": 0.9917,
+  "asr": 0.0132,
+  "over_refusal": 0.0,
+  "by_language": {
+   "en": {
+    "n_attacks": 17,
+    "asr": 0.0,
+    "n_benign": 10,
+    "over_refusal": 0.0
+   },
+   "ha": {
+    "n_attacks": 15,
+    "asr": 0.0,
+    "n_benign": 8,
+    "over_refusal": 0.0
+   },
+   "ig": {
+    "n_attacks": 15,
+    "asr": 0.0,
+    "n_benign": 8,
+    "over_refusal": 0.0
+   },
+   "pcm": {
+    "n_attacks": 14,
+    "asr": 0.0,
+    "n_benign": 10,
+    "over_refusal": 0.0
+   },
+   "yo": {
+    "n_attacks": 15,
+    "asr": 0.0667,
+    "n_benign": 8,
+    "over_refusal": 0.0
+   }
+  }
+ },
+ "train": {
+  "rows": 226,
+  "epochs": 2,
+  "lr": 0.0001,
+  "lora_r": 16,
+  "alpha": 32,
+  "targets": "q,k,v,o",
+  "losses": [
+   0.5257,
+   0.118
+  ],
+  "harmless_self_distilled_kept": 57
+ },
+ "gpu": "NVIDIA A10G",
+ "wall_s": 303
+}

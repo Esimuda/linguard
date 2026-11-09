@@ -26,7 +26,7 @@ Form: https://hackathon.lexsi.ai/submission/ (Tally `o9E0Ve`).
 ## Values to paste
 
 - Registered email: `babalolabowale01@gmail.com` (ticket `#27J8-ENVZ-WV7M`)
-- Abstract: `docs/submit/ABSTRACT.md` (228 words, paragraphs)
+- Abstract: `docs/submit/ABSTRACT.md` (~345 words, paragraphs)
 - Discord: `esimuda`
 - Tracks: **2a + 2b**
 - Repos: CuratorKIT, SafeTune, CircuitKIT, AuditKIT
@@ -34,7 +34,7 @@ Form: https://hackathon.lexsi.ai/submission/ (Tally `o9E0Ve`).
 - GitHub: https://github.com/Esimuda/linguard
 - Demo/public: https://huggingface.co/spaces/Esimuda/linguard (put in article/demo-related links as applicable; Space is live)
 - Dataset repo: https://huggingface.co/datasets/Esimuda/linguard-safety
-- Model repo: https://huggingface.co/Esimuda/linguard-caa-vectors
+- Model repos: https://huggingface.co/Esimuda/linguard-tiny-aya-earth-lora · https://huggingface.co/Esimuda/linguard-caa-vectors · https://huggingface.co/Esimuda/linguard-circuit
 - Write-up / article field: paste `docs/submit/HF_ARTICLE.md` as an HF Article, then use that URL (fallback: GitHub README)
 
 ## Blockers before ideal resubmit

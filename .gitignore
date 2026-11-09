@@ -32,3 +32,5 @@ data/results/live/*.pt
 !data/curated/repair_corpus.jsonl
 !data/curated/curatorkit_out/
 logs/
+!data/results/gpu/
+!data/results/circuit/

@@ -1,5 +1,9 @@
 # docs/demo
 
+**Demo video (1:50):** https://youtu.be/er5yVB2xrWY
+
+Earlier offline clip:
+
 - **`pidginguard-walkthrough.mp4`** — ~58s, 1280×720 H.264, silent with caption overlays. Real terminal output of the offline harness (frames rendered from actual command output, ffmpeg-assembled):
   1. Title card — Linguard — Lexsi AI Safety 2026 / Israel
   2. `git log` + repo layout

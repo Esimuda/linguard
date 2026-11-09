@@ -2,6 +2,8 @@
 
 > **Linguard — guarding language.** Small multilingual models stay safe in English and slip in Pidgin, Yoruba, Hausa and Igbo. Linguard finds those gaps, curates repair data, hardens the model, and proves it with before/after audits.
 
+**Demo video (1:50):** https://youtu.be/er5yVB2xrWY
+
 **Multilingual Nigerian-language safety red-teaming + Lexsi harden pipeline for Cohere Labs Tiny Aya.**
 Repo: [github.com/Esimuda/linguard](https://github.com/Esimuda/linguard). (Internal Python package is still importable as `pidginguard`; `linguard` CLI alias works too.)
 
@@ -180,7 +182,7 @@ pidginguard/
   docs/SCHEDULE.md
   docs/LEXSI_ABSTRACT.md    # human-paragraph Lexsi abstract
   docs/GPU_PATH.md          # SafeGrad/LoRA + CircuitKIT GPU steps
-  docs/demo/                # walkthrough plan / future clip
+  docs/demo/                # walkthrough plan / demo video
   notebooks/                # Colab/ZeroGPU SafeGrad stub
   scripts/                  # publish, collections, circuit task, live pipeline
   tests/
@@ -188,7 +190,9 @@ pidginguard/
 
 ## Demo
 
-See [`DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md). A short terminal walkthrough can be added under `docs/demo/` once the live HF path works; early package ships the plan + offline harness run.
+**Demo video (1:50):** https://youtu.be/er5yVB2xrWY
+
+See [`DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md).
 
 ## Licence & ethics
 
